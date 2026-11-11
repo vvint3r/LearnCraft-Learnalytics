@@ -1,0 +1,234 @@
+/*
+ * Design tokens for every explainer. The palette, radii and typefaces follow the
+ * Content Morphia Report Kit. shadcn, Magic UI and Aceternity components read the
+ * role variables below, so no imported component ships in its default look.
+ */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@source "../";
+@source "../../explainers";
+
+@font-face {
+  font-family: "Nunito Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 1000;
+  src: url("../../node_modules/@fontsource-variable/nunito/files/nunito-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Nunito Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 1000;
+  src: url("../../node_modules/@fontsource-variable/nunito/files/nunito-latin-ext-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "JetBrains Mono Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url("../../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2") format("woff2-variations");
+}
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Surfaces and ink */
+  --ink: #000;
+  --paper: #fff;
+  --surface: #fff;
+  --canvas: #fafafa;
+  --track: #f1f1f1;
+  --hairline: #ebebeb;
+  --field: #d9d9d9;
+
+  /* Brand accent: fills, rules and marks. Never text. */
+  --brand: #1bbd94;
+  --brand-tint: rgba(27, 189, 148, 0.25);
+  --brand-wash: rgba(27, 189, 148, 0.08);
+  --brand-hover: rgba(27, 189, 148, 0.3);
+
+  /* Status */
+  --ok: #00e676;
+  --warn: #ffd600;
+  --crit: #ff5252;
+  --info: #40c4ff;
+  --note: #b388ff;
+
+  /* Chart series, context grey and the sequential ramp */
+  --series-1: var(--brand);
+  --series-2: var(--ink);
+  --series-3: #2d6fdc;
+  --series-4: #8a4fd6;
+  --context: #d9d9d9;
+  --seq-1: #e4f7f1;
+  --seq-2: #ace6d5;
+  --seq-3: #62d1b2;
+  --seq-4: #1bbd94;
+  --seq-5: #0e7a5f;
+
+  /* Elevation */
+  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --elev-2: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --elev-3: 0 14px 28px -6px rgba(0, 0, 0, 0.11);
+
+  /* Roles read by shadcn, Magic UI and Aceternity components */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--track);
+  --secondary-foreground: var(--ink);
+  --muted: var(--track);
+  --muted-foreground: var(--ink);
+  --accent: var(--track);
+  --accent-foreground: var(--ink);
+  --destructive: var(--crit);
+  --border: var(--hairline);
+  --input: var(--field);
+  --ring: var(--brand);
+  --chart-1: var(--series-1);
+  --chart-2: var(--series-2);
+  --chart-3: var(--series-3);
+  --chart-4: var(--series-4);
+  --chart-5: var(--context);
+  --radius: 0.5rem;
+  --sidebar: var(--canvas);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--track);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--hairline);
+  --sidebar-ring: var(--brand);
+}
+
+.dark {
+  --ink: #fff;
+  --paper: #0d0d0d;
+  --surface: #171717;
+  --canvas: #121212;
+  --track: #262626;
+  --hairline: #2c2c2c;
+  --field: #4a4a4a;
+  --brand: #2fd4a8;
+  --brand-tint: rgba(47, 212, 168, 0.28);
+  --brand-wash: rgba(47, 212, 168, 0.1);
+  --brand-hover: rgba(47, 212, 168, 0.3);
+  --series-3: #5b9af2;
+  --series-4: #a982f0;
+  --context: #4a4a4a;
+  --seq-1: #13302a;
+  --seq-2: #145444;
+  --seq-3: #18806a;
+  --seq-4: #22ad8b;
+  --seq-5: #4fe3bc;
+  --elev-1: 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --elev-2: 0 0 0 1px rgba(255, 255, 255, 0.07), 0 8px 22px rgba(0, 0, 0, 0.55);
+  --elev-3: 0 0 0 1px rgba(255, 255, 255, 0.09), 0 18px 34px -6px rgba(0, 0, 0, 0.65);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: "Nunito Variable", system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-mono: "JetBrains Mono Variable", ui-monospace, Menlo, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-canvas: var(--canvas);
+  --color-track: var(--track);
+  --color-hairline: var(--hairline);
+  --color-field: var(--field);
+  --color-brand: var(--brand);
+  --color-brand-tint: var(--brand-tint);
+  --color-brand-wash: var(--brand-wash);
+  --color-brand-hover: var(--brand-hover);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-crit: var(--crit);
+  --color-info: var(--info);
+  --color-note: var(--note);
+  --color-context: var(--context);
+
+  /* The radius set: 4, 6, 8, 12, 14 and full. */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 14px;
+  --radius-3xl: 14px;
+  --radius-4xl: 14px;
+
+  --shadow-elev-1: var(--elev-1);
+  --shadow-elev-2: var(--elev-2);
+  --shadow-elev-3: var(--elev-3);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+  number-flow-react {
+    font-variant-numeric: tabular-nums;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}

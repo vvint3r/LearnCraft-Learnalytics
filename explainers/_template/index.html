@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>__TITLE__</title>
+    <meta name="description" content="State in one sentence what this page explains." />
+    <script>
+      // Dark theme follows data-theme on <html> when present, else the system setting.
+      ;(function () {
+        var root = document.documentElement
+        var media = matchMedia('(prefers-color-scheme: dark)')
+        function apply() {
+          var set = root.getAttribute('data-theme')
+          root.classList.toggle('dark', set ? set === 'dark' : media.matches)
+        }
+        apply()
+        media.addEventListener('change', apply)
+        new MutationObserver(apply).observe(root, { attributes: true, attributeFilter: ['data-theme'] })
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>

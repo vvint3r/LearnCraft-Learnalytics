@@ -1,0 +1,8 @@
+{
+  "provider": "elevenlabs",
+  "voice_id": "hpp4J3VqNfWAUOO0d1Us",
+  "voice_name": "Bella - Professional, Bright, Warm",
+  "model_id": "eleven_v4",
+  "output_format": "mp3_44100_128",
+  "voice_settings": null
+}
