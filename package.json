@@ -13,8 +13,6 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
-    "@fontsource-variable/jetbrains-mono": "^5.3.0",
-    "@fontsource-variable/nunito": "^5.3.0",
     "@gsap/react": "^2.1.2",
     "@number-flow/react": "^0.6.2",
     "@tailwindcss/vite": "^4.3.5",
@@ -41,7 +39,7 @@
     "vite": "^8.3.6",
     "vite-plugin-singlefile": "^2.3.4"
   },
-  "description": "Scroll-driven, animated explainers for analytics concepts, each built to one self-contained HTML file.",
+  "description": "Explanations of analytics concepts built from diagrams, animation, charts, 3D, video, narration and interaction.",
   "engines": {
     "node": ">=20"
   }
