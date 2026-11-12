@@ -1,17 +1,17 @@
 # Handoff
 
-How to put another agent, or another machine, on this stack.
+How to put another agent, or another machine, on this project.
 
 ## What carries the setup
 
 | Item | Where | Carries |
 | --- | --- | --- |
-| The repository | `github.com/vvint3r/LearnCraft-Learnalytics` | Build project, design tokens, components, scripts, the reference explainer, 31 skills, 3 review agents |
+| The repository | `github.com/vvint3r/LearnCraft-Learnalytics` | Build project, components, scripts, 31 skills, 3 review agents |
 | `AGENTS.md` | Repository root | The working brief every agent reads first |
 | `voice.config.json` | Repository root | The narration voice and model |
 | An ElevenLabs API key | Supplied per environment, never committed | Narration through `npm run voice` |
 
-Everything except the API key is in the repository. An agent with the repository has the stack.
+Everything except the API key is in the repository. An agent with the repository has the setup.
 
 ## Requirements
 
@@ -26,11 +26,11 @@ Everything except the API key is in the repository. An agent with the repository
 git clone https://github.com/vvint3r/LearnCraft-Learnalytics.git
 cd LearnCraft-Learnalytics
 npm install
-npm run build
-npm run check
+npm run typecheck
 ```
 
-All three check lines for `starter` should read `ok`.
+The repository holds no piece yet, so there is nothing to build until one is scaffolded with
+`npm run new`.
 
 ## Setup by agent type
 
@@ -44,24 +44,24 @@ All three check lines for `starter` should read `ok`.
 ## Brief to paste into another agent
 
 ```text
-You are working in the LearnCraft-Learnalytics repository: scroll-driven, animated explainers
-for analytics concepts, each built to one self-contained HTML file.
+You are working in the LearnCraft-Learnalytics repository: explanations of analytics concepts,
+built from whatever explains the concept best (diagrams, animation, charts, tables, 3D, video,
+narration, sound, interaction), combined freely.
 
-1. Read AGENTS.md in full before doing anything. It sets the commands, the stack, the workflow
-   and the rules. docs/STACK.md gives the reason for each choice.
-2. Run: npm install, then npm run build, then npm run check. Confirm the starter explainer
-   passes before changing anything.
-3. Study explainers/starter/ as the reference for structure, figures, motion and narration.
-4. To build a new explainer: npm run new -- <slug> "Title", then follow "Building an explainer"
-   in AGENTS.md. Use the skills in .claude/skills/ that AGENTS.md names for each step; each is a
-   Markdown file at .claude/skills/<name>/SKILL.md.
-5. Use only the stack in AGENTS.md. Styling comes from src/styles/theme.css. Do not add a second
-   chart, motion or component foundation library.
-6. Before reporting done: npm run typecheck, npm run build -- <slug>, npm run check -- <slug>,
-   and look at the screenshots in .check/.
-7. Deliver dist/<slug>.html and say what you checked and what you did not.
+1. Read AGENTS.md in full before doing anything. It sets the working agreement, the commands
+   and what is installed. docs/STACK.md gives the reason for each installed part.
+2. Run: npm install, then npm run typecheck.
+3. Do not build yet. First agree a specification with the owner: audience, points covered,
+   script step by step, modules and their form, content and data, visual direction, outputs.
+4. There is no house visual style and no fixed format or tool list. Take the look from the
+   agreed specification, not from another repository, an earlier piece or a skill's default.
+5. Use the skills in .claude/skills/ that AGENTS.md names; each is a Markdown file at
+   .claude/skills/<name>/SKILL.md.
+6. Before reporting done on a web page: npm run typecheck, npm run build -- <slug>,
+   npm run check -- <slug>, and look at the screenshots in .check/.
+7. Say what you checked and what you did not.
 
-Topic for this explainer: <state the concept, the audience and any source data>
+Topic: <state the concept, the audience and any source data>
 ```
 
 ## Narration on another setup
@@ -76,4 +76,4 @@ Topic for this explainer: <state the concept, the audience and any source data>
 
 - The repository is the single source. Pull before starting work; push through a pull request.
 - Skill updates follow `.claude/third-party/README.md`.
-- A change to the stack is recorded in `docs/STACK.md` and `AGENTS.md` in the same commit.
+- A tool added to the project is recorded in `docs/STACK.md` and `AGENTS.md` in the same commit.

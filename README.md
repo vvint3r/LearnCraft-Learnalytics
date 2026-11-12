@@ -1,26 +1,27 @@
 # LearnCraft-Learnalytics
 
-Scroll-driven, animated explainers for analytics concepts. Each explainer builds to one
-self-contained HTML file.
+Explanations of analytics concepts, built from whatever explains the concept best: diagrams,
+animation, charts, tables, 3D, video, narration, sound and interaction, combined freely.
 
 ## Quick start
 
 ```bash
 npm install
-npm run dev -- starter
 ```
 
 ```bash
-npm run build
-npm run check
+npm run typecheck
 ```
 
-`dist/starter.html` is the built reference explainer, on attribution models.
+## Start a new piece
 
-## Start a new explainer
+A piece starts from a specification agreed with the owner. The scaffold is an empty page.
 
 ```bash
 npm run new -- incrementality "Incrementality testing"
+```
+
+```bash
 npm run dev -- incrementality
 ```
 
@@ -28,7 +29,7 @@ npm run dev -- incrementality
 
 | File | Contents |
 | --- | --- |
-| [AGENTS.md](AGENTS.md) | Working brief: commands, layout, stack, workflow, rules, skills, voice |
-| [docs/STACK.md](docs/STACK.md) | Each stack choice, its version and the reason for it |
-| [docs/HANDOFF.md](docs/HANDOFF.md) | Setting up another agent or machine on this stack |
+| [AGENTS.md](AGENTS.md) | Working brief: working agreement, commands, layout, installed tools, skills, voice |
+| [docs/STACK.md](docs/STACK.md) | What is installed, its version and the reason for it |
+| [docs/HANDOFF.md](docs/HANDOFF.md) | Setting up another agent or machine on this project |
 | [.claude/third-party/README.md](.claude/third-party/README.md) | Third-party skills: sources, commits, licences, changes |

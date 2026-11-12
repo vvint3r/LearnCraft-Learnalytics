@@ -13,7 +13,7 @@ import {
 import { UniversalTransition } from 'echarts/features'
 import { SVGRenderer } from 'echarts/renderers'
 import { cn } from '@/lib/utils'
-import { token, useTheme } from '@/lib/theme'
+import { useTheme } from '@/lib/theme'
 import { useReducedMotion } from '@/lib/motion'
 
 echarts.use([
@@ -34,40 +34,11 @@ echarts.use([
   SVGRenderer,
 ])
 
-/** ECharts theme built from the design tokens in src/styles/theme.css. */
-function chartTheme() {
-  const ink = token('--ink')
-  const hairline = token('--hairline')
-  const text = { color: ink, fontFamily: 'Nunito Variable, system-ui, sans-serif', fontSize: 13 }
-  const axis = {
-    axisLine: { lineStyle: { color: ink } },
-    axisTick: { show: false },
-    axisLabel: text,
-    splitLine: { lineStyle: { color: hairline } },
-    nameTextStyle: { ...text, fontWeight: 800 },
-  }
-  return {
-    color: [token('--series-1'), token('--series-2'), token('--series-3'), token('--series-4'), token('--context')],
-    backgroundColor: 'transparent',
-    textStyle: text,
-    categoryAxis: { ...axis, splitLine: { show: false } },
-    valueAxis: { ...axis, axisLine: { show: false } },
-    timeAxis: axis,
-    legend: { textStyle: text, icon: 'roundRect', itemWidth: 12, itemHeight: 12 },
-    tooltip: {
-      backgroundColor: token('--surface'),
-      borderColor: hairline,
-      textStyle: text,
-      extraCssText: 'border-radius:8px;box-shadow:var(--elev-2)',
-    },
-    bar: { itemStyle: { borderRadius: 4 } },
-    line: { symbolSize: 6, lineStyle: { width: 2.5 } },
-  }
-}
-
 export interface ChartProps {
-  /** A standard ECharts option. Colours and type come from the theme; set them only to carry meaning. */
+  /** A standard ECharts option. */
   option: EChartsCoreOption
+  /** An ECharts theme object for the piece's own palette and type. Without it the chart uses ECharts' stock theme. */
+  theme?: object
   /** Text alternative read by assistive technology. State the takeaway, not the chart type. */
   label: string
   height?: number
@@ -75,10 +46,11 @@ export interface ChartProps {
 }
 
 /**
- * A themed ECharts chart. It redraws on theme change, resizes with its container,
- * animates changes between options, and draws without animation under reduced motion.
+ * An ECharts chart. It redraws when the page switches between light and dark, resizes
+ * with its container, animates changes between options, and draws without animation
+ * under reduced motion. It sets no colours or type of its own.
  */
-export function Chart({ option, label, height = 320, className }: ChartProps) {
+export function Chart({ option, theme: chartTheme, label, height = 320, className }: ChartProps) {
   const el = useRef<HTMLDivElement>(null)
   const chart = useRef<echarts.ECharts | null>(null)
   const theme = useTheme()
@@ -86,7 +58,7 @@ export function Chart({ option, label, height = 320, className }: ChartProps) {
 
   useEffect(() => {
     if (!el.current) return
-    const instance = echarts.init(el.current, chartTheme(), { renderer: 'svg' })
+    const instance = echarts.init(el.current, chartTheme ?? (theme === 'dark' ? 'dark' : undefined), { renderer: 'svg' })
     chart.current = instance
     const resize = new ResizeObserver(() => instance.resize())
     resize.observe(el.current)
@@ -95,11 +67,11 @@ export function Chart({ option, label, height = 320, className }: ChartProps) {
       instance.dispose()
       chart.current = null
     }
-  }, [theme])
+  }, [theme, chartTheme])
 
   useEffect(() => {
-    chart.current?.setOption({ animation: !reduced, animationDuration: 600, animationDurationUpdate: 450, ...option })
-  }, [option, reduced, theme])
+    chart.current?.setOption({ animation: !reduced, backgroundColor: 'transparent', ...option })
+  }, [option, reduced, theme, chartTheme])
 
   return <div ref={el} role="img" aria-label={label} className={cn('w-full', className)} style={{ height }} />
 }

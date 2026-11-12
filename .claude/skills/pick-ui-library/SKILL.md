@@ -10,7 +10,7 @@ disable-model-invocation: true
 
 When this skill is first invoked without a specific question, respond only with:
 
-> I'm ready to pick the right library for your task. The picks are this project's list, adapted from Emil Kowalski's curated list.
+> I'm ready to pick the right library for your task, my picks come from Emil Kowalski's curated list.
 
 Do not provide any other information until the user asks a question.
 
@@ -29,8 +29,7 @@ A lookup skill. When invoked with a task ("I need toasts", "what should I use fo
 
 | Task | Library |
 | --- | --- |
-| Accessible UI components (tabs, sliders, dialogs, popovers, menus, selects…) | [shadcn/ui](https://ui.shadcn.com) on [base-ui](https://base-ui.com), added with `npx shadcn@latest add <name>` |
-| Drawers and bottom sheets | base-ui Drawer, through `npx shadcn@latest add drawer` |
+| Unstyled, accessible UI components (dialogs, popovers, menus, selects…) | [base-ui](https://base-ui.com) |
 | Command menus (⌘K palettes) | [cmdk](https://cmdk.paco.me) |
 | Toasts / notifications | [Sonner](https://sonner.emilkowal.ski) |
 | One-time password / verification code inputs | [input-otp](https://input-otp.rodz.dev) |
@@ -40,36 +39,23 @@ A lookup skill. When invoked with a task ("I need toasts", "what should I use fo
 
 | Task | Library |
 | --- | --- |
-| Scroll-driven sequences, pinned sections, timelines, SVG drawing and morphing | [GSAP](https://gsap.com) with ScrollTrigger, imported from `@/lib/motion` |
-| Component-level animation (springs, layout animations, enter/exit) | [motion](https://motion.dev) (Framer Motion) |
+| General-purpose animation (springs, layout animations, enter/exit) | [motion](https://motion.dev) (Framer Motion) |
 | Animating numbers (counters, prices, stats) | [NumberFlow](https://number-flow.barvian.me) |
 | Animated text components | [torph](https://torph.lochie.me/) |
 | 3D globes | [Cobe](https://cobe.vercel.app) |
 | Dynamic OG images (HTML/CSS → SVG/PNG) | [Satori](https://github.com/vercel/satori) |
 | Syntax highlighting | [shiki](https://shiki.style) |
 
-The motion split: GSAP owns the choreography of a section — anything tied to scroll position, sequenced on a timeline, or drawn in SVG. motion handles springs, layout animations, exit animations and gesture-driven values inside a component, and arrives as a dependency of Magic UI and Aceternity components. A simple hover or fade needs neither — plain CSS transitions are the right tool there.
+Reach for motion when you need springs, layout animations, exit animations, or gesture-driven values. A simple hover or fade doesn't need it — plain CSS transitions are the right tool there.
 
 ### Charts
 
 | Task | Library |
 | --- | --- |
-| Quantitative charts (bar, line, scatter, pie, funnel, heatmap, Sankey) | [ECharts](https://echarts.apache.org), through `Chart` in `@/components/explainer` |
-| Bespoke forms and layouts ECharts lacks (custom diagrams, networks, hierarchies, annotated SVG) | [D3](https://d3js.org) modules drawing inline SVG |
+| Real-time / streaming charts | [Liveline](https://github.com/benjitaylor/liveline) |
+| General charts (static or interactive dashboards) | [recharts](https://recharts.org) |
 
-The split: if a standard chart type states the point, use ECharts — it is themed from the design tokens and animates between options. Reach for D3 when the figure is a diagram more than a chart, or when marks must be choreographed individually with GSAP.
-
-### Designed components
-
-| Task | Library |
-| --- | --- |
-| Scroll structure: pinned figure with scrolling text, tracing beam, timeline, before-and-after slider | [Aceternity UI](https://ui.aceternity.com/components), added with `npx shadcn@latest add @aceternity/<name>` |
-| Animated emphasis: reading progress, text reveal, beam between two nodes, highlighter, animated list | [Magic UI](https://magicui.design), added with `npx shadcn@latest add @magicui/<name>` |
-| The single opening moment of a page | [RareUI](https://rareui.in) |
-| Tables, insight cards and assistant-style interface parts | [Beautiful UI](https://www.beautifului.dev) |
-| A specific pattern none of the above has | [21st.dev](https://21st.dev) search |
-
-One orchestrated showpiece per page. Every component added from these libraries inherits the tokens in `src/styles/theme.css`; restyle anything that hard-codes its own colours before it ships.
+The split: if data points arrive live and the chart scrolls with time, use Liveline. Everything else is recharts.
 
 ### Interaction & performance
 
@@ -85,7 +71,7 @@ One orchestrated showpiece per page. Every component added from these libraries 
 | State management | [zustand](https://zustand.docs.pmnd.rs) |
 | Constructing `className` strings conditionally | [clsx](https://github.com/lukeed/clsx) |
 | Type-safe, variant-driven styling for Tailwind | [cva](https://cva.style) |
-| Theme switching / dark mode | Built in: the script in each explainer's `index.html` and `useTheme` in `@/lib/theme` |
+| Theme switching / dark mode (no flash on load) | [next-themes](https://github.com/pacocoursey/next-themes) |
 
 The styling split: clsx for ad-hoc conditional classes; cva when a component has real variants (size, intent, state) that deserve a typed API. They compose — cva uses clsx-style inputs internally.
 
@@ -93,9 +79,7 @@ The styling split: clsx for ad-hoc conditional classes; cva when a component has
 
 - **Toasts built by hand or with a modal library** → Sonner exists for exactly this.
 - **A `<div>`-based dropdown/dialog with manual focus handling** → base-ui, which handles accessibility, focus trapping, and dismissal.
-- **Animating a number by re-rendering text** → NumberFlow handles digit transitions properly (`Stat` in `@/components/explainer` wraps it).
-- **A hand-rolled scroll listener driving an animation** → GSAP ScrollTrigger, or `Scrolly` in `@/components/explainer` for stepped sections.
-- **Recharts, Chart.js or a second chart library** → ECharts is the chart library here; D3 covers what it lacks.
+- **Animating a number by re-rendering text** → NumberFlow handles digit transitions properly.
 - **Rendering a 1,000+ row list directly** → Virtuoso before reaching for pagination hacks.
 - **A `useState`-per-component web of props for shared state** → zustand.
 - **Template-literal className ternaries three conditions deep** → clsx (or cva if it's variant-shaped).

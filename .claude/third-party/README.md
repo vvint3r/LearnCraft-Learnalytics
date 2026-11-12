@@ -1,10 +1,9 @@
 # Third-party skills
 
-Skills from outside this repository, copied in at the commit that was reviewed. They supply method
-for explanatory pages: how to structure an explanation, draw a diagram, choose and review a chart,
-decide on and sequence motion, and pick a library. `src/styles/theme.css` stays the authority on
-styling and `AGENTS.md` on the stack. Where a skill's own palette, typeface, chart library or
-motion library differs from those, the project's choice wins.
+Skills from outside this repository, copied in at the commit that was reviewed. They supply method:
+how to structure an explanation, draw a diagram, choose and review a chart, decide on and sequence
+motion, and pick a library. A skill's own palette, typeface or library list is that skill's
+default, not this project's: the specification of each piece decides.
 
 Cloud sessions load skills and agents committed under `.claude/`; they do not install plugins a
 repository declares in its settings. So each source is a copy, not a marketplace entry.
@@ -41,14 +40,8 @@ Every file is as the source has it, except:
   folder, and `SKILL.md` reads them there (`references/`, `assets/`) where the source says
   `../../references/` and `../../assets/`.
 
-- **diagram-design.** In `references/style-guide.md`, the semantic-role values and the typography
-  families are set to this project's tokens, with a note at the top saying so. This also satisfies
-  the skill's first-use check, which otherwise stops to ask for a brand.
-- **emilkowalski/skills.** Seven motion skills are as the source has them. `pick-ui-library` is
-  edited to this project's stack: shadcn/ui on Base UI and the Base UI drawer for components; GSAP
-  added beside Motion; ECharts and D3 in place of Recharts and Liveline; a section for the designed
-  component libraries; the built-in theme switch in place of next-themes; three more mismatches to
-  catch. Its opening line says the list is adapted.
+`diagram-design` and the eight `emilkowalski/skills` skills are as the source has them. On its
+first diagram, `diagram-design` asks which skin to use; answer from the piece's specification.
 
 ## Not installed
 
